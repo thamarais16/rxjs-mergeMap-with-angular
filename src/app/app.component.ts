@@ -6,6 +6,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { of, from, mergeMap, fromEvent, Observable, switchMap } from 'rxjs';
+import { exhaustMap } from 'rxjs/operators';
 
 @Component({
   selector: 'my-app',
@@ -53,7 +54,7 @@ export class AppComponent implements OnInit {
   mergeMapExm() {
     this.click$
       .pipe(
-        mergeMap((val) => {
+        exhaustMap((val) => {
           this.count = this.count + 1;
           return this.delayCount(this.count);
         })

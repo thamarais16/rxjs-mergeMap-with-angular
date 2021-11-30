@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent, Observable, concatMap, exhaustMap } from 'rxjs';
 
 @Component({
@@ -8,6 +8,7 @@ import { fromEvent, Observable, concatMap, exhaustMap } from 'rxjs';
 })
 export class DemoComponent implements OnInit, AfterViewInit {
   @ViewChild('buttons', { static: true }) buttons;
+  @ViewChild('para', {static: false}) para: ElementRef;
   click: Observable<any>;
   count = 0;
   constructor() {}
@@ -17,6 +18,7 @@ export class DemoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() { 
     this.click = fromEvent(this.buttons.nativeElement, 'click');
     this.mergeMapExm();
+    this.para.nativeElement.innerHTML = "hI MAMAE";
   }
 
   delayCount(count: number): Observable<any> {
