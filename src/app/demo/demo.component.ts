@@ -1,21 +1,20 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { fromEvent, Observable, concatMap } from 'rxjs';
+import { fromEvent, Observable, concatMap, exhaustMap } from 'rxjs';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
-  styleUrls: ['./demo.component.css']
+  styleUrls: ['./demo.component.css'],
 })
 export class DemoComponent implements OnInit, AfterViewInit {
-  @ViewChild('buttons', {static: true}) buttons;
+  @ViewChild('buttons', { static: true }) buttons;
   click: Observable<any>;
   count = 0;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngAfterViewInit(){
+  ngAfterViewInit() { 
     this.click = fromEvent(this.buttons.nativeElement, 'click');
     this.mergeMapExm();
   }
@@ -44,7 +43,7 @@ export class DemoComponent implements OnInit, AfterViewInit {
   mergeMapExm() {
     this.click
       .pipe(
-        concatMap((val) => {
+        exhaustMap((val) => {
           this.count = this.count + 1;
           return this.delayCount(this.count);
         })
