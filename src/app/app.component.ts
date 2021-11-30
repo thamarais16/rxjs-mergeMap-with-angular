@@ -12,7 +12,7 @@ import { of, from, mergeMap, fromEvent, Observable, switchMap } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   @ViewChild('buttons', { static: true }) buttons;
   click$: Observable<any>;
   count: number = 0;
@@ -22,12 +22,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log('ngOnit');
   }
 
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
-    this.click$ = fromEvent(this.buttons.nativeElement, 'click');
-    //this.click$ = of(1, 2, 3);
-    this.mergeMapExm();
-  }
+  // ngAfterViewInit(): void {
+  //   console.log('ngAfterViewInit');
+  //   this.click$ = fromEvent(this.buttons.nativeElement, 'click');
+  //   //this.click$ = of(1, 2, 3);
+  //   this.mergeMapExm();
+  // }
 
   delayCount(count: number): Observable<any> {
     return new Observable((observer) => {
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe((val) => {
-        console.log(val); 
+        console.log(val);
       });
   }
-} 
+}
