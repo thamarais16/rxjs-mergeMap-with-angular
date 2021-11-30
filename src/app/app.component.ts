@@ -62,4 +62,4 @@ export class AppComponent implements OnInit, AfterViewInit {
         console.log(val); 
       });
   }
-}
+} 
